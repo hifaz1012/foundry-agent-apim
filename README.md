@@ -23,7 +23,7 @@ https://learn.microsoft.com/en-us/azure/api-management/azure-ai-foundry-api
 
         - **apiName** : Enter Foundry API name from Step 1
           
-        - **connectionName** : Give connection name which will be created as connection in Foundry Project
+        - **connectionName** : Give connection name which will be created as connection in Foundry Project e.g. FoundryAgentAPIMConnection
           
         - Under “Static” model sections list the models in foundry project and set format as “OpenAI” **(Use New Foundry View)**
 
@@ -38,4 +38,27 @@ https://learn.microsoft.com/en-us/azure/api-management/azure-ai-foundry-api
 
 2b. If you are using Terraform, [Min to include]
 
-3. 
+3. Verify if APIM connection is created in Foundry Project Resource (New Foundry > Admin > Projects > Connected Resources)
+   <img width="975" height="143" alt="image" src="https://github.com/user-attachments/assets/ca8c97ea-ba0d-41a5-b35f-31b18b71714f" />
+
+4. 	Test using Sample Agents SDK: test-agents-apim.py. Set Env Variable which refers to model using APIM connection name in Foundry Project.
+AZURE_AI_FOUNDRY_MODEL_DEPLOYMENT_NAME="FoundryAgentAPIMConnection/gpt-4.1"
+
+5. Verify using Foundry Portal
+<img width="749" height="380" alt="image" src="https://github.com/user-attachments/assets/a9ea1c2a-fdfe-4fdc-a93b-9167b6ad02a4" />
+
+## **References :-**
+
+Bring your own AI gateway to Azure AI Agent Service (preview) - Microsoft Foundry | Microsoft Learn
+
+foundry-samples/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-inte…
+
+## **Disclaimer :-**
+
+This Prototype/Proof of Concept (POC) sample template code can be utilized by customer and adapted according to their specific use cases and testing requirements. Microsoft or the author does not hold responsibility for the maintenance of customer code, production issues, or security vulnerabilities.
+
+
+
+ 
+ 
+

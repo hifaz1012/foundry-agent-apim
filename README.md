@@ -43,8 +43,39 @@ az deployment group create --resource-group [Resource Group] --template-file con
 ```
 
 ### 2b. Deploy Using Terraform
+The terraform configuration in this repository only shows how to create Foundry Project APIM connection with static models. You can extend it as per your requirements with reference to Bicep code https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim
 
-[To be included]
+1. Navigate to the `terraform` directory:
+   ```bash
+   cd terraform
+   ```
+2. Create a `terraform.tfvars` file from the example:
+   ```bash
+   cp terraform.tfvars.example terraform.tfvars
+   ```
+3. Update the following variables in `terraform.tfvars`:
+    - `subscription_id` (string): The subscription ID to deploy resources into which is the same subscription as Foundry Project.
+    - `apim_resource_id` (string): The resource ID of the API Management service.
+    - `apim_api_name` (string): The name of the API in API Management to connect to.
+    - `connection_name` (string): The name of the Foundry Project APIM connection. If not provided, defaults to the API Management service name.
+    - `deployment_in_path` (bool): Whether deployment name is in URL path vs body. Defaults to true which means deployment name is included in the URL path.
+    - `foundry_project_resource_id` (string): The resource ID of the Foundry Project.
+    - `inference_api_version` (string): "API version for inference calls (chat completions, embeddings). Defaults to '2025-03-01-preview'."
+    - `is_shared_to_all` (bool): "Share connection to all project users. Defaults to false."
+    - `static_models` (list): List of static models to configure in the APIM connection. Refer to terraform variables.tf and example tfvars for format.
+  ![example tfvars](images/img7.png)
+4. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+5. Review the Terraform execution plan:
+   ```bash
+   terraform plan
+   ```
+6. Apply the Terraform configuration:
+   ```bash
+   terraform apply
+   ```
 
 ### 3. Verify APIM Connection
 

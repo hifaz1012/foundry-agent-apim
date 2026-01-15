@@ -15,6 +15,7 @@ Create a Foundry API in APIM and keep a note of the API Name using the [Azure AI
 ### 2a. Deploy Using Bicep
 
 Clone the repository: https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim
+The repository only shows how to create Foundry Project APIM connection with static models, for other types please use appropriate json file.
 
 Copy `samples/parameters-static-models.json` and edit the parameters:
 

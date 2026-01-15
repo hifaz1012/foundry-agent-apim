@@ -1,3 +1,4 @@
+# Uses Microsoft Foundry SDK V2
 import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential

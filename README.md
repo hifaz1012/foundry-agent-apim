@@ -1,64 +1,76 @@
 # Microsoft Foundry Agent APIM Connection
 
 ## Introduction
-This capability enables organizations to maintain control over their model endpoints. Keep your model endpoints secure behind your existing APIM Gateway by applying security policies. It is also be useful when Azure OpenAI PTU models are shared across multiple subscriptions.
+
+This capability enables organizations to maintain control over their model endpoints. Keep your model endpoints secure behind your existing APIM Gateway by applying security policies. It is also useful when Azure OpenAI PTU models are shared across multiple subscriptions.
 
 ## Setup Steps
-1.	Create a Foundry API in APIM and keep a note of API Name using
-https://learn.microsoft.com/en-us/azure/api-management/azure-ai-foundry-api
-<img width="1510" height="823" alt="image" src="https://github.com/user-attachments/assets/f9f08a5d-8741-44fd-8014-5a4f221a15b1" />
 
-2a. If you are using Bicep, Clone repo : https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim
-    - Copy samples/parameters-static-models.json and edit the parameters
-      
-        - **projectResourceId** : Enter Foundry Project Resource Id 
-          
-          <img width="1888" height="408" alt="image" src="https://github.com/user-attachments/assets/d951aa86-bc58-45f7-8424-26c8b10675f6" />
+### 1. Create a Foundry API in APIM
 
+Create a Foundry API in APIM and keep a note of the API Name using the [Azure AI Foundry API documentation](https://learn.microsoft.com/en-us/azure/api-management/azure-ai-foundry-api).
 
-        - **apimResourceId** : Enter APIM Resource Id
-          
-          <img width="1866" height="331" alt="image" src="https://github.com/user-attachments/assets/1855bde9-0d38-4c62-8fe1-a16f7b1e3a08" />
+ ![alt text](images/img1.png)
 
+### 2a. Deploy Using Bicep
 
-        - **apiName** : Enter Foundry API name from Step 1
-          
-        - **connectionName** : Give connection name which will be created as connection in Foundry Project e.g. FoundryAgentAPIMConnection
-          
-        - Under “Static” model sections list the models in foundry project and set format as “OpenAI” **(Use New Foundry View)**
+Clone the repository: https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim
 
-          <img width="1886" height="299" alt="image" src="https://github.com/user-attachments/assets/60106050-4d2c-4460-b7b6-ed4dc12c45b2" />
+Copy `samples/parameters-static-models.json` and edit the parameters:
 
-          <img width="575" height="396" alt="image" src="https://github.com/user-attachments/assets/cc6cceea-866e-4891-aabe-da5be9e550cb" />
+- **projectResourceId**: Enter Foundry Project Resource Id
 
-        - Run in command line
-        ```bash
-        az deployment group create --resource-group [Resource Group] --template-file connection-apim.bicep --parameters @samples/parameters-static-models-foundry.json
-        ```
+  ![alt text](images/img2.png)
 
-2b. If you are using Terraform, [Min to include]
+- **apimResourceId**: Enter APIM Resource Id
 
-3. Verify if APIM connection is created in Foundry Project Resource (New Foundry > Admin > Projects > Connected Resources)
-   <img width="975" height="143" alt="image" src="https://github.com/user-attachments/assets/ca8c97ea-ba0d-41a5-b35f-31b18b71714f" />
+  ![alt text](images/img3.png)
 
-4. 	Test using Sample Agents SDK: test-agents-apim.py. Set Env Variable which refers to model using APIM connection name in Foundry Project.
+- **apiName**: Enter Foundry API name from Step 1
+
+- **connectionName**: Give connection name which will be created as connection in Foundry Project (e.g., `FoundryAgentAPIMConnection`)
+
+- Under "Static" model sections, list the models in Foundry project and set format as "OpenAI" **(Use New Foundry View)**
+
+  ![alt text](images/img5.png)
+
+  ![alt text](images/img6.png)
+
+Run in command line:
+
+```bash
+az deployment group create --resource-group [Resource Group] --template-file connection-apim.bicep --parameters @samples/parameters-static-models-foundry.json
+```
+
+### 2b. Deploy Using Terraform
+
+[To be included]
+
+### 3. Verify APIM Connection
+
+Verify if APIM connection is created in Foundry Project Resource (New Foundry > Operate > Admin > All Projects > Select Project > Connected Resources)
+
+![alt text](images/img4.png)
+
+### 4. Test Using Sample Agents SDK
+
+Test using Sample Agents SDK: `test-agents-apim.py`. Set environment variable which refers to model using APIM connection name in Foundry Project:
+
+```bash
 AZURE_AI_FOUNDRY_MODEL_DEPLOYMENT_NAME="FoundryAgentAPIMConnection/gpt-4.1"
+```
 
-5. Verify using Foundry Portal
-<img width="749" height="380" alt="image" src="https://github.com/user-attachments/assets/a9ea1c2a-fdfe-4fdc-a93b-9167b6ad02a4" />
+## References
 
-## **References :-**
+- [Bring your own AI gateway to Azure AI Agent Service (preview) - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/ai-gateway?view=foundry)
+- [foundry-samples/infrastructure/infrastructure-setup-bicep/01-connections/apim](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim)
 
-Bring your own AI gateway to Azure AI Agent Service (preview) - Microsoft Foundry | Microsoft Learn
+## Disclaimer
 
-foundry-samples/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-inte…
-
-## **Disclaimer :-**
-
-This Prototype/Proof of Concept (POC) sample template code can be utilized by customer and adapted according to their specific use cases and testing requirements. Microsoft or the author does not hold responsibility for the maintenance of customer code, production issues, or security vulnerabilities.
+This Prototype/Proof of Concept (POC) sample template code can be utilized by customers and adapted according to their specific use cases and testing requirements. Microsoft or the author does not hold responsibility for the maintenance of customer code, production issues, or security vulnerabilities.
 
 
 
- 
- 
+
+
 

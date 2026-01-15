@@ -1,0 +1,34 @@
+# Copy this file to terraform.tfvars and update with your values
+# cp terraform.tfvars.example terraform.tfvars
+
+subscription_id = "{subscriptionId}"
+
+apim_resource_id = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}"
+apim_api_name = "{apiNameInApim}"
+connection_name = "FoundryAgentAPIMConnection"
+deployment_in_path = true
+foundry_project_resource_id = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}"
+inference_api_version = "2025-03-01-preview"
+is_shared_to_all = false
+static_models = [
+  {
+    name = "gpt-4o"
+    properties = {
+      model = {
+        name    = "gpt-4o"
+        version = "2024-08-06"
+        format  = "OpenAI"
+      }
+    }
+  },
+  {
+    name = "gpt-4.1"
+    properties = {
+      model = {
+        name    = "gpt-4.1"
+        version = "2025-04-14"
+        format  = "OpenAI"
+      }
+    }
+  }
+]

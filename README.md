@@ -12,6 +12,9 @@ Create a Foundry API in APIM and keep a note of the API Name using the [Azure AI
 
  ![alt text](images/img1.png)
 
+Note: For the purpose of this demo, we have only tested with `Client compatability mode = "Azure OpenAI"` in APIM API settings. Additional configuration may be required for other client compatibility modes.
+![1768876355843](images/img8.png)
+
 ### 2a. Deploy Using Bicep
 
 Clone the repository: https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections/apim
@@ -30,6 +33,10 @@ Copy `samples/parameters-static-models.json` and edit the parameters:
 - **apiName**: Enter Foundry API name from Step 1
 
 - **connectionName**: Give connection name which will be created as connection in Foundry Project (e.g., `FoundryAgentAPIMConnection`)
+
+- **deploymentInPath**: Set to `"true"` because we are using Azure OpenAI client compatibility mode in APIM.
+
+- **inferenceApiVersion**: Set to `"2025-03-01-preview"`. This is required because we are using Azure OpenAI client compatibility mode in APIM.
 
 - Under "Static" model sections, list the models in Foundry project and set format as "OpenAI" **(Use New Foundry View)**
 
